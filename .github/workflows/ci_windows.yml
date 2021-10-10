@@ -9,7 +9,6 @@ jobs:
         neovim: [false, true]
     runs-on: windows-latest
     steps:
-
       #############
       #  clone  #
       #############
@@ -25,5 +24,22 @@ jobs:
       - name: Install Python
         uses: actions/setup-python@v1
 
+      #########################
+      #  Install pyinstaller  #
+      #########################
       - name: Install pyinstaller
         run: pip3 install pyinstaller
+
+      ###########
+      #  Build  #
+      ###########
+      - name: Build with pyinstaller
+        run: |
+          cd ./ECY
+          pyinstaller -F ./ECY/cli.py
+
+      ################
+      #  UploadFile  #
+      ################
+      - name: UploadFile
+        run: python ./ECY/upload_to_release_page.py
