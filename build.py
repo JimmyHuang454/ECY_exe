@@ -1,5 +1,9 @@
 import subprocess
 import sys
+import os
+
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+BASE_DIR = BASE_DIR.replace('\\', '/')
 
 
 def DoCMD(cmd):
@@ -17,4 +21,5 @@ def GetCurrentOS():
         return 'Mac'
 
 
-DoCMD("pyinstaller -F -N %s ./ECY/cli.py" % GetCurrentOS())
+DoCMD("pyinstaller -F -N %s --specpath %s ./ECY/cli.py" %
+      (GetCurrentOS(), BASE_DIR))

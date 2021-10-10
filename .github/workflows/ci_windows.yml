@@ -34,7 +34,6 @@ jobs:
       - name: Build with pyinstaller
         run: |
           python ./ECY/build.py
-          cd ./ECY
           ls
 
       ################
