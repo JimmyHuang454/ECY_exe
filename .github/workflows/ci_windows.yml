@@ -42,7 +42,7 @@ jobs:
       ################
       #  UploadFile  #
       ################
-     - name: Release
+      - name: Release
         uses: softprops/action-gh-release@v1
-       with:
-        files: ./ECY/dist/cli.exe
+        with:
+          files: ./ECY/dist/cli.exe
