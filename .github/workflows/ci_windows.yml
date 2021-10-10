@@ -28,7 +28,9 @@ jobs:
       #  Install pyinstaller  #
       #########################
       - name: Install pyinstaller
-        run: pip3 install pyinstaller
+        run: |
+          pip3 install pyinstaller
+          pip3 install requests
 
       ###########
       #  Build  #
