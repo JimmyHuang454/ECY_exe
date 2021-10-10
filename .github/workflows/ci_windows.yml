@@ -36,7 +36,7 @@ jobs:
       - name: Build with pyinstaller
         run: |
           cd ./ECY
-          pyinstaller -F ./ECY/cli.py
+          pyinstaller -F ./cli.py
 
       ################
       #  UploadFile  #
