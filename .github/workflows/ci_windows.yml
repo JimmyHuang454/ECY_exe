@@ -30,7 +30,6 @@ jobs:
       - name: Install pyinstaller
         run: |
           pip3 install pyinstaller
-          pip3 install requests
 
       ###########
       #  Build  #
@@ -43,5 +42,7 @@ jobs:
       ################
       #  UploadFile  #
       ################
-      - name: UploadFile
-        run: python ./ECY/upload_to_release_page.py
+     - name: Release
+        uses: softprops/action-gh-release@v1
+       with:
+        files: ./ECY/dist/cli.exe
