@@ -4,9 +4,6 @@ on: [push, pull_request]
 jobs:
   setup_env:
     name: Build with pyinstaller
-    strategy:
-      matrix:
-        neovim: [false, true]
     runs-on: windows-latest
     steps:
       #############
@@ -44,7 +41,7 @@ jobs:
       ################
       - name: Release
         uses: softprops/action-gh-release@v1
-        tag_name: v0.0.1
-        name: ECY_exe
+        tag_name: "v0.0.1"
+        name: "ECY_exe"
         with:
           files: ./ECY/dist/cli.exe
