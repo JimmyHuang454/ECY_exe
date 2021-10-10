@@ -1,0 +1,29 @@
+name: ECY
+on: [push, pull_request]
+
+jobs:
+  setup_env:
+    name: Build with pyinstaller
+    strategy:
+      matrix:
+        neovim: [false, true]
+    runs-on: windows-latest
+    steps:
+
+      #############
+      #  clone  #
+      #############
+      - name: Checkout myself
+        uses: actions/checkout@v2
+        with:
+          repository: JimmyHuang454/ECY_exe
+          path: ECY
+
+      ####################
+      #  Install python  #
+      ####################
+      - name: Install Python
+        uses: actions/setup-python@v1
+
+      - name: Install pyinstaller
+        run: pip3 install pyinstaller
