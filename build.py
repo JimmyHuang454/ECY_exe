@@ -21,5 +21,5 @@ def GetCurrentOS():
         return 'Mac'
 
 
-DoCMD("pyinstaller -F -N %s --specpath %s ./ECY/cli.py" %
+DoCMD("pyinstaller -F -n %s --specpath %s ./ECY/cli.py" %
       (GetCurrentOS(), BASE_DIR))
