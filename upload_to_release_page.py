@@ -15,16 +15,16 @@ BASE_DIR = BASE_DIR.replace('\\', '/')
 NOW_TIME = str(int(datetime.datetime.now().timestamp()))
 TOKEN = os.getenv('GITHUB_TOKEN', default='')
 
-repo = 'JimmyHuang454/ECY_exe'
-tag = NOW_TIME
-name = "Build"
+REPO = 'JimmyHuang454/ECY_exe'
+TAG = NOW_TIME
+NAME = "Build"
 
 
 def UploadFile(release_id, file_path):
     upload_files = {'file': open(file_path, 'rb')}
     respon = requests.post(
         'https://uploads.github.com/repos/%s/releases/%s/assets?%s' %
-        (repo, release_id, urlencode({'name': os.path.split(file_path)[1]})),
+        (REPO, release_id, urlencode({'name': os.path.split(file_path)[1]})),
         files=upload_files,
         headers={
             'Accept': 'application/vnd.github.v3+json',
@@ -35,7 +35,7 @@ def UploadFile(release_id, file_path):
 
 def Delete(release_id):
     respon = requests.delete('https://api.github.com/repos/%s/releases/%s' %
-                             repo,
+                             REPO,
                              release_id,
                              headers={
                                  'Accept': 'application/vnd.github.v3+json',
@@ -47,7 +47,7 @@ def Delete(release_id):
 #######################################################################
 #                               delete                               #
 #######################################################################
-respon = requests.get('https://api.github.com/repos/%s/releases' % repo)
+respon = requests.get('https://api.github.com/repos/%s/releases' % REPO)
 respon = json.loads(respon.text)
 for item in respon:
     print(item['id'])
@@ -58,11 +58,10 @@ for item in respon:
 #                               new                                #
 #######################################################################
 def NewPage():
-    url_template = 'https://{}.github.com/repos/' + repo + '/releases'
-    respon = requests.post('https://api.github.com/repos/%s/releases' % repo,
+    respon = requests.post('https://api.github.com/repos/%s/releases' % REPO,
                            json={
-                               'tag_name': tag,
-                               'name': name,
+                               'tag_name': TAG,
+                               'name': NAME,
                                'prerelease': False,
                            },
                            headers={
@@ -70,6 +69,7 @@ def NewPage():
                                'Authorization': 'token ' + TOKEN
                            })
     respon = json.loads(respon.text)
+    print(respon)
     new_release_id = respon['id']
     return new_release_id
 
