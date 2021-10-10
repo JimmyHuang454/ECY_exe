@@ -4,7 +4,7 @@ on: [push, pull_request]
 jobs:
   setup_env:
     name: Build with pyinstaller
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       #############
       #  clone  #
@@ -44,4 +44,4 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: ./ECY/dist/cli.exe
+          files: ./ECY/dist/Linux.exe

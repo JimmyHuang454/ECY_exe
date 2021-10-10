@@ -19,7 +19,8 @@ def GetCurrentOS():
         return 'Cygwin'
     if temp == 'darwin':
         return 'Mac'
+    return "Linux"
 
 
-DoCMD("pyinstaller -F -n %s --specpath %s ./cli.py" %
+DoCMD("pyinstaller -F -n %s.exe --specpath %s ./cli.py" %
       (GetCurrentOS(), BASE_DIR))
