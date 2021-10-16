@@ -30,6 +30,7 @@ jobs:
       - name: Install pyinstaller
         run: |
           pip3 install pyinstaller
+          pip3 install https://github.com/rokm/pyinstaller/archive/refs/heads/python-3.10.zip
 
       ###########
       #  Build  #
