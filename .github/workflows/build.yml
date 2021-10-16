@@ -18,6 +18,12 @@ jobs:
           repository: JimmyHuang454/ECY_exe
           path: ECY
 
+      - name: Checkout jedi
+        uses: actions/checkout@v2
+        with:
+          repository: pappasam/jedi-language-server
+          path: ./ECY/jedi/
+
       ####################
       #  Install python  #
       ####################
