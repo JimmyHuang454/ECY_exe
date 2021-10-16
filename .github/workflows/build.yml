@@ -22,15 +22,18 @@ jobs:
       #  Install python  #
       ####################
       - name: Install Python
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.7" # Version range or exact version of a Python version to use, using SemVer's version range syntax
+          architecture: "x86" # optional x64 or x86. Defaults to x64 if not specified
 
       #########################
       #  Install pyinstaller  #
       #########################
       - name: Install pyinstaller
         run: |
+          python3 --version
           pip3 install pyinstaller
-          pip3 install https://github.com/rokm/pyinstaller/archive/refs/heads/python-3.10.zip
 
       ###########
       #  Build  #
