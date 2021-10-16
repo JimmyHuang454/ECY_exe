@@ -12,6 +12,7 @@ import json
 import subprocess
 import shlex
 import base64
+import shutil
 
 from urllib.parse import urljoin
 from urllib.request import pathname2url
@@ -22,7 +23,6 @@ from xmlrpc.server import SimpleXMLRPCServer
 import xmlrpc.client
 
 import pygments
-import shutil
 
 # determine if application is a script file or frozen exe
 if getattr(sys, 'frozen', False):
