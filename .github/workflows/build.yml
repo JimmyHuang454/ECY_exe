@@ -34,7 +34,6 @@ jobs:
           python3 --version
           pip3 install pyinstaller
           pip3 install pygments
-          pip3 install shutil
 
       ###########
       #  Build  #
