@@ -53,6 +53,15 @@ jobs:
       ################
       #  UploadFile  #
       ################
+      - name: Pip info
+        run: |
+          cd ./ECY/bin
+          ls
+
+      - name: rename pip
+        if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'windows-latest'
+        run: |
+          mv ./ECY/bin/pip.exe ./ECY/bin/pip_windows.exe
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'windows-latest'
@@ -61,6 +70,10 @@ jobs:
             ./ECY/dist/Windows.exe
             ./ECY/bin/pip.exe
 
+      - name: rename pip
+        if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'ubuntu-latest'
+        run: |
+          mv ./ECY/bin/pip ./ECY/bin/pip_linux.exe
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'ubuntu-latest'
@@ -69,6 +82,10 @@ jobs:
             ./ECY/dist/Linux.exe
             ./ECY/bin/pip
 
+      - name: rename pip
+        if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'macos-latest'
+        run: |
+          mv ./ECY/bin/pip ./ECY/bin/pip_mac.exe
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'macos-latest'
@@ -76,8 +93,3 @@ jobs:
           files: |
             ./ECY/dist/Mac.exe
             ./ECY/bin/pip
-
-      - name: Pip info
-        run: |
-          cd ./ECY/bin
-          ls
