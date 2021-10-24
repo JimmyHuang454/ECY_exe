@@ -25,6 +25,4 @@ def GetCurrentOS():
 DoCMD("pyinstaller -F -n %s.exe --specpath %s ./cli.py" %
       (GetCurrentOS(), BASE_DIR))
 
-DoCMD(
-    "pyinstaller -F -n jedi_%s.exe --specpath %s ./jedi/jedi_language_server/cli.py"
-    % (GetCurrentOS(), BASE_DIR))
+DoCMD("pip3 install pip -t %s" % (BASE_DIR))
