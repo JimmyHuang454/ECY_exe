@@ -56,38 +56,38 @@ jobs:
       - name: rename pip
         if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'windows-latest'
         run: |
-          mv ./ECY/bin/pip.exe ./ECY/bin/pip_windows.exe
+          mv ./ECY/bin/pip.exe ./ECY/bin/pip_Windows.exe
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'windows-latest'
         with:
           files: |
             ./ECY/dist/Windows.exe
-            ./ECY/bin/pip_windows.exe
+            ./ECY/bin/pip_Windows.exe
 
       - name: rename pip
         if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'ubuntu-latest'
         run: |
-          mv ./ECY/bin/pip ./ECY/bin/pip_linux.exe
+          mv ./ECY/bin/pip ./ECY/bin/pip_Linux.exe
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'ubuntu-latest'
         with:
           files: |
             ./ECY/dist/Linux.exe
-            ./ECY/bin/pip_linux.exe
+            ./ECY/bin/pip_Linux.exe
 
       - name: rename pip
         if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'macos-latest'
         run: |
-          mv ./ECY/bin/pip ./ECY/bin/pip_mac.exe
+          mv ./ECY/bin/pip ./ECY/bin/pip_Mac.exe
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'macos-latest'
         with:
           files: |
             ./ECY/dist/Mac.exe
-            ./ECY/bin/pip_mac.exe
+            ./ECY/bin/pip_Mac.exe
 
       - name: Pip info
         run: |
