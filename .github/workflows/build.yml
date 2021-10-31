@@ -18,11 +18,11 @@ jobs:
           repository: JimmyHuang454/ECY_exe
           path: ECY
 
-      - name: Checkout jedi
+      - name: Checkout jedi_ls
         uses: actions/checkout@v2
         with:
           repository: pappasam/jedi-language-server
-          path: ./ECY/jedi/
+          path: ./ECY/python/cli/
 
       ####################
       #  Install python  #
@@ -40,6 +40,7 @@ jobs:
           python3 --version
           pip3 install pyinstaller
           pip3 install pygments
+          pip3 install jedi_language_server
 
       ###########
       #  Build  #
@@ -53,41 +54,29 @@ jobs:
       ################
       #  UploadFile  #
       ################
-      - name: rename pip
-        if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'windows-latest'
-        run: |
-          mv ./ECY/bin/pip.exe ./ECY/bin/pip_Windows.exe
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'windows-latest'
         with:
           files: |
             ./ECY/dist/Windows.exe
-            ./ECY/bin/pip_Windows.exe
+            ./ECY/dist/jedi_Windows.exe
 
-      - name: rename pip
-        if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'ubuntu-latest'
-        run: |
-          mv ./ECY/bin/pip ./ECY/bin/pip_Linux.exe
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'ubuntu-latest'
         with:
           files: |
             ./ECY/dist/Linux.exe
-            ./ECY/bin/pip_Linux.exe
+            ./ECY/dist/jedi_Linux.exe
 
-      - name: rename pip
-        if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'macos-latest'
-        run: |
-          mv ./ECY/bin/pip ./ECY/bin/pip_Mac.exe
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'macos-latest'
         with:
           files: |
             ./ECY/dist/Mac.exe
-            ./ECY/bin/pip_Mac.exe
+            ./ECY/dist/jedi_Mac.exe
 
       - name: Pip info
         run: |

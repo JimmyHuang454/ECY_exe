@@ -21,9 +21,3 @@ def GetCurrentOS():
         return 'Mac'
     return "Linux"
 
-
-DoCMD("pyinstaller -F -n %s.exe --specpath %s ./cli.py" %
-      (GetCurrentOS(), BASE_DIR))
-
-DoCMD("pyinstaller -F -n jedi_%s.exe --specpath %s ./jedi_cli.py" %
-      (GetCurrentOS(), BASE_DIR))
