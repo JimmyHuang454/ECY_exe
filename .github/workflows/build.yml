@@ -77,8 +77,3 @@ jobs:
           files: |
             ./ECY/dist/Mac.exe
             ./ECY/dist/jedi_Mac.exe
-
-      - name: Pip info
-        run: |
-          cd ./ECY/bin
-          ls
