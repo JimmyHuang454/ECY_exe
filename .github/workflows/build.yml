@@ -89,7 +89,7 @@ jobs:
       - name: Test
         if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'ubuntu-latest'
         run: |
-          ./ECY/dist/ECY_Linux.exe --help
+          ./ECY/dist/jedi_Linux.exe --help
           ./ECY/ts_Linux.exe --help
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -106,7 +106,7 @@ jobs:
       - name: Test
         if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'macos-latest'
         run: |
-          ./ECY/dist/ECY_Mac.exe --help
+          ./ECY/dist/jedi_Mac.exe --help
           ./ECY/ts_Mac.exe --help
       - name: Release
         uses: softprops/action-gh-release@v1
