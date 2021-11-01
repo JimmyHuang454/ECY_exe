@@ -43,10 +43,10 @@ jobs:
         run: |
           npm install -g nexe
           cd ./ECY/typescript-language-server
-          ls
           npm install
           npm run compile
           npm install --prefix ./ECY/ vim-language-server
+          ls
 
       #########################
       #  Install pyinstaller  #
@@ -71,7 +71,7 @@ jobs:
       #                               upload                                #
       #######################################################################
       - name: Test
-        if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'windows-latest'
+        if: matrix.os == 'windows-latest'
         run: |
           ./ECY/dist/jedi_Windows.exe --help
           ./ECY/ts_Windows.exe --help
@@ -90,7 +90,7 @@ jobs:
       #  linux  #
       ###########
       - name: Test
-        if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'ubuntu-latest'
+        if: matrix.os == 'ubuntu-latest'
         run: |
           ./ECY/dist/jedi_Linux.exe --help
           ./ECY/ts_Linux.exe --help
@@ -109,7 +109,7 @@ jobs:
       #  mac  #
       #########
       - name: Test
-        if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'macos-latest'
+        if: matrix.os == 'macos-latest'
         run: |
           ./ECY/dist/jedi_Mac.exe --help
           ./ECY/ts_Mac.exe --help
