@@ -72,7 +72,6 @@ jobs:
       - name: Test
         if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'windows-latest'
         run: |
-          ./ECY/dist/ECY_Windows.exe --help
           ./ECY/dist/jedi_Windows.exe --help
           ./ECY/ts_Windows.exe --help
       - name: Release
@@ -90,7 +89,6 @@ jobs:
       - name: Test
         if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'ubuntu-latest'
         run: |
-          ./ECY/dist/ECY_Linux.exe --help
           ./ECY/dist/jedi_Windows.exe --help
           ./ECY/ts_Windows.exe --help
       - name: Release
@@ -108,7 +106,6 @@ jobs:
       - name: Test
         if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'macos-latest'
         run: |
-          ./ECY/dist/ECY_Mac.exe --help
           ./ECY/dist/jedi_Windows.exe --help
           ./ECY/ts_Windows.exe --help
       - name: Release
