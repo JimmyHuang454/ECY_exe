@@ -1,4 +1,4 @@
-name: ECY
+name: html
 on: [push, pull_request]
 
 jobs:
@@ -30,6 +30,6 @@ jobs:
           npm install -g yarn
           cd ./vsc/extensions/html-language-features/server/
           yarn install
-          npm run compile
+          yarn run compile
           nexe -t x64-12.9.1 ./out/node/htmlServerMain.js
           ls
