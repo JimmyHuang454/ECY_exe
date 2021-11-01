@@ -39,16 +39,19 @@ jobs:
         with:
           node-version: "14"
 
-      - name: npm install
+      - name: npm install typescript-language-server
         run: |
           npm install -g nexe
           cd ./ECY/typescript-language-server
           npm install
           npm run compile
+          ls
+
+      - name: npm install vim-language-server
+        run: |
           npm install --prefix ./ECY/ vim-language-server
           cd ./ECY/node_modules/vim-language-server/bin
           ls
-          nexe -t x64-12.9.1 ./index.js
 
       #########################
       #  Install pyinstaller  #
