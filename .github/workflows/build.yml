@@ -82,6 +82,7 @@ jobs:
           files: |
             ./ECY/dist/Windows.exe
             ./ECY/dist/jedi_Windows.exe
+            ./ECY/ts_Windows.exe
 
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -90,6 +91,7 @@ jobs:
           files: |
             ./ECY/dist/Linux.exe
             ./ECY/dist/jedi_Linux.exe
+            ./ECY/ts_Linux.exe
 
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -98,3 +100,4 @@ jobs:
           files: |
             ./ECY/dist/Mac.exe
             ./ECY/dist/jedi_Mac.exe
+            ./ECY/ts_Mac.exe
