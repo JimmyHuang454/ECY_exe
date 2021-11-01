@@ -48,6 +48,7 @@ jobs:
       - name: npm install
         run: |
           npm install -g nexe
+          ls
           cd ./ECY/python/cli/typescript-language-server
           npm install
           nexe ./lib/cli.js  -t x64-14.5.0 
