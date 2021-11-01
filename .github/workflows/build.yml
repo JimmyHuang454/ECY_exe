@@ -28,7 +28,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: typescript-language-server/typescript-language-server
-          path: ./ECY/python/cli/
 
       ####################
       #  Install python  #
@@ -49,9 +48,9 @@ jobs:
         run: |
           npm install -g nexe
           ls
-          cd ./ECY/python/cli/typescript-language-server
+          cd ./typescript-language-server
           npm install
-          nexe ./lib/cli.js  -t x64-14.5.0 
+          nexe ./lib/cli.js  -t x64-14.5.0
 
       #########################
       #  Install pyinstaller  #
