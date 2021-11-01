@@ -29,7 +29,8 @@ jobs:
           npm install -g nexe
           npm install -g yarn
           cd ./vsc/extensions/html-language-features/server/
-          yarn install
-          yarn run compile
+          npm install
+          # yarn run compile
+          tsc -b
           nexe -t x64-12.9.1 ./out/node/htmlServerMain.js
           ls
