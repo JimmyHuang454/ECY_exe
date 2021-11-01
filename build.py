@@ -8,8 +8,7 @@ BASE_DIR = BASE_DIR.replace('\\', '/')
 
 def DoCMD(cmd):
     print('\n\n==', cmd, '\n')
-    subprocess.Popen(cmd, cwd=BASE_DIR, shell=True,
-                     stderr=subprocess.PIPE).wait()
+    subprocess.Popen(cmd, cwd=BASE_DIR, shell=True).wait()
 
 
 def GetCurrentOS():
