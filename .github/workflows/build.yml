@@ -46,6 +46,7 @@ jobs:
           npm install
           npm run compile
           npm install --prefix ./ECY/ vim-language-server
+          cd ./ECY/node_modules/vim-language-server/bin
           ls
 
       #########################
@@ -61,7 +62,7 @@ jobs:
       ###########
       #  Build  #
       ###########
-      - name: Build with pyinstaller
+      - name: Build
         run: |
           python ./ECY/build.py
           cd ./ECY
