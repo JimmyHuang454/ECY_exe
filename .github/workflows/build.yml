@@ -48,6 +48,7 @@ jobs:
           npm install --prefix ./ECY/ vim-language-server
           cd ./ECY/node_modules/vim-language-server/bin
           ls
+          nexe -t x64-12.9.1 ./index.js
 
       #########################
       #  Install pyinstaller  #
