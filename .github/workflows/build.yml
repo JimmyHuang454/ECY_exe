@@ -50,7 +50,9 @@ jobs:
       - name: npm install vim-language-server
         run: |
           npm install --prefix ./ECY/ vim-language-server
-          cd ./ECY/node_modules/vim-language-server/bin
+          cd ./ECY/node_modules/vim-language-server/
+          npm install
+          cd ./bin
           ls
 
       #########################
