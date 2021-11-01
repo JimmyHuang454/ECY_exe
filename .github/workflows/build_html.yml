@@ -1,0 +1,34 @@
+name: ECY
+on: [push, pull_request]
+
+jobs:
+  setup_env:
+    name: windows-latest
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      #############
+      #  clone  #
+      #############
+      - name: Checkout myself
+        uses: actions/checkout@v2
+        with:
+          repository: JimmyHuang454/ECY_exe
+          path: ECY
+
+      - name: Checkout theia
+        uses: actions/checkout@v2
+        with:
+          repository: microsoft/vscode
+          path: ./vsc/
+
+      - name: npm install vim-language-server
+        run: |
+          npm install -g nexe
+          cd ./vsc/extensions/html-language-features/server/
+          npm install
+          npm run compile
+          nexe -t x64-12.9.1 ./out/node/htmlServerMain.js
+          ls
