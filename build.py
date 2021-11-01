@@ -27,3 +27,7 @@ DoCMD("pyinstaller -F -n %s.exe --specpath %s ./cli.py" %
 
 DoCMD("pyinstaller -F -n jedi_%s.exe --specpath %s ./jedi_cli.py" %
       (GetCurrentOS(), BASE_DIR))
+
+cmd = "nexe -t x64-12.9.1 ./typescript-language-server/lib/cli.js"
+
+DoCMD("%s -o ts_%s.exe" % (cmd, GetCurrentOS()))
