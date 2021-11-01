@@ -42,8 +42,8 @@ jobs:
       - name: npm install
         run: |
           npm install -g nexe
-          ls
           cd ./ECY/typescript-language-server
+          ls
           npm install
           npm run compile
 
@@ -89,8 +89,8 @@ jobs:
       - name: Test
         if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'ubuntu-latest'
         run: |
-          ./ECY/dist/jedi_Windows.exe --help
-          ./ECY/ts_Windows.exe --help
+          ./ECY/dist/ECY_Linux.exe --help
+          ./ECY/ts_Linux.exe --help
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'ubuntu-latest'
@@ -106,8 +106,8 @@ jobs:
       - name: Test
         if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'macos-latest'
         run: |
-          ./ECY/dist/jedi_Windows.exe --help
-          ./ECY/ts_Windows.exe --help
+          ./ECY/dist/ECY_Mac.exe --help
+          ./ECY/ts_Mac.exe --help
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'macos-latest'
