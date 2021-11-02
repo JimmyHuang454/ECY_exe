@@ -25,6 +25,7 @@ jobs:
           cd ./gopls
           go install
           go build -o ./gopls_${{ runner.os }}.exe
+          ./gopls_${{ runner.os }}.exe --help
           ls
 
       - name: Release
