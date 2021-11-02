@@ -1,4 +1,4 @@
-name: ECY
+name: All
 on: [push, pull_request]
 
 jobs:
