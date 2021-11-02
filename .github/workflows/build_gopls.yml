@@ -31,5 +31,12 @@ jobs:
           go version
           cd ./gopls/gopls
           go install
-          go build .
+          go build . -o gopls_${{ runner.os }}.exe
           ls
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            ./gopls/gopls/gopls_${{ runner.os }}.exe
