@@ -1,0 +1,33 @@
+name: gopls
+on: [push, pull_request]
+
+jobs:
+  setup_env:
+    name: windows-latest
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      #############
+      #  clone  #
+      #############
+      - name: Checkout myself
+        uses: actions/checkout@v2
+        with:
+          repository: JimmyHuang454/ECY_exe
+          path: ECY
+
+      - name: Checkout gopls
+        uses: actions/checkout@v2
+        with:
+          repository: golang/tools
+          path: ./gopls/
+
+      - uses: actions/setup-go@v2
+      - run: |
+        go version
+        cd ./gopls/
+        go install
+        go build .
+        ls
