@@ -31,7 +31,7 @@ jobs:
           go version
           cd ./gopls/gopls
           go install
-          go build . -o ./gopls_${{ runner.os }}.exe
+          go build -o ./gopls_${{ runner.os }}.exe
           ls
 
       - name: Release
