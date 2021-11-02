@@ -4,4 +4,6 @@
 
 3. Build [TS LS](https://github.com/typescript-language-server/typescript-language-server) into executable file with [nexe](https://github.com/nexe/nexe).
 
+4. Build [gopls LS](https://github.com/golang/tools) with golang itself.
+
 In the end, push them to release page.

@@ -1,0 +1,33 @@
+name: rust
+on: [push, pull_request]
+
+jobs:
+  setup_env:
+    name: rust
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          repository: rust-analyzer/rust-analyzer
+
+      - name: Install Rust toolchain
+          uses: actions-rs/toolchain@v1
+          with:
+            toolchain: stable
+            profile: minimal
+            override: true
+
+      - name: build rust-analyzer
+        run: |
+          cargo xtask dist
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            ./rust_${{ runner.os }}.exe
