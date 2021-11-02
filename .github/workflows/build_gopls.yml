@@ -25,9 +25,11 @@ jobs:
           path: ./gopls/
 
       - uses: actions/setup-go@v2
-      - run: |
-        go version
-        cd ./gopls/
-        go install
-        go build .
-        ls
+
+      - name: build golang
+        run: |
+          go version
+          cd ./gopls/
+          go install
+          go build .
+          ls
