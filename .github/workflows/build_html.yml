@@ -3,7 +3,7 @@ on: [push, pull_request]
 
 jobs:
   setup_env:
-    name: windows-latest
+    name: html
     strategy:
       matrix:
         os: [windows-latest, macos-latest, ubuntu-latest]
