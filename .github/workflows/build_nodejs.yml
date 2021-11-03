@@ -43,12 +43,19 @@ jobs:
           pkg package.json -o ./ts_${{ runner.os }}.exe
           ls
 
+      - name: Checkout coc-html
+        uses: actions/checkout@v2
+        with:
+          repository: neoclide/coc-html
+          path: html
       - name: npm html
         run: |
+          npm install -g yarn
           npm install vscode-html-languageserver-bin -prefix ./
-          cd ./node_modules/vscode-html-languageserver-bin
-          npm install
-          pkg package.json -o ./html_${{ runner.os }}.exe
+          cd ./html/
+          yarn install
+          yarn run build
+          pkg ./lib/server.js -o ./html_${{ runner.os }}.exe
           ls
 
       - name: Release
