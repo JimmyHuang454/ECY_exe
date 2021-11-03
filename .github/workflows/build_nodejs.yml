@@ -43,6 +43,18 @@ jobs:
           pkg package.json -o ./ts_${{ runner.os }}.exe
           ls
 
+      - name: Checkout vscode
+        uses: actions/checkout@v2
+        with:
+          repository: microsoft/vscode
+          path: vsc
+      - name: npm html
+        run: |
+          cd ./vsc/extensions/html-language-features/server/
+          npm install
+          pkg package.json -o ./html_${{ runner.os }}.exe
+          ls
+
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
@@ -51,3 +63,4 @@ jobs:
             ./node_modules/pyright/pyright_${{ runner.os }}.exe
             ./node_modules/vim-language-server/viml_${{ runner.os }}.exe
             ./node_modules/typescript-language-server/ts_${{ runner.os }}.exe
+            ./vsc/extensions/html-language-features/server/html_${{ runner.os }}.exe
