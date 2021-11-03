@@ -18,6 +18,19 @@ jobs:
         with:
           node-version: "14"
 
+      - name: Checkout vscode
+        uses: actions/checkout@v2
+        with:
+          repository: microsoft/vscode
+          path: vsc
+      - name: npm html
+        run: |
+          cd ./vsc/extensions/html-language-features/server/
+          npm install
+          node ./build/javaScriptLibraryLoader.js
+          ls
+          pkg ./out/node/htmlServerMain.js -o ./html_${{ runner.os }}.exe
+
       - name: npm Pyright
         run: |
           npm install -g pkg
@@ -41,19 +54,6 @@ jobs:
           cd ./node_modules/typescript-language-server
           npm install
           pkg package.json -o ./ts_${{ runner.os }}.exe
-          ls
-
-      - name: Checkout vscode
-        uses: actions/checkout@v2
-        with:
-          repository: microsoft/vscode
-          path: vsc
-      - name: npm html
-        run: |
-          cd ./vsc/extensions/html-language-features/server/
-          npm install
-          node ./build/javaScriptLibraryLoader.js
-          pkg ./out/node/htmlServerMain.js -o ./html_${{ runner.os }}.exe
           ls
 
       - name: Release
