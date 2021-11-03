@@ -52,7 +52,8 @@ jobs:
         run: |
           cd ./vsc/extensions/html-language-features/server/
           npm install
-          pkg package.json -o ./html_${{ runner.os }}.exe
+          npm compile
+          pkg ./out/node/htmlServerMain.js -o ./html_${{ runner.os }}.exe
           ls
 
       - name: Release
