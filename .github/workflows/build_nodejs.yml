@@ -26,7 +26,8 @@ jobs:
       - name: npm html
         run: |
           cd ./vsc/extensions/html-language-features/server/
-          npm install
+          npm install -g yarn
+          yarn install
           node ./build/javaScriptLibraryLoader.js
           ls
           pkg ./out/node/htmlServerMain.js -o ./html_${{ runner.os }}.exe
