@@ -3,7 +3,7 @@ on: [push, pull_request]
 
 jobs:
   setup_env:
-    name: pyright, viml
+    name: pyright, viml, ts
     strategy:
       matrix:
         os: [windows-latest, macos-latest, ubuntu-latest]
@@ -33,6 +33,15 @@ jobs:
           cd ./node_modules/vim-language-server
           npm install
           pkg package.json -o ./viml_${{ runner.os }}.exe
+          ls
+
+      - name: npm ts
+        run: |
+          npm install typescript-language-server -prefix ./
+          cd ./node_modules/typescript-language-server
+          npm install
+          pkg package.json -o ./ts_${{ runner.os }}.exe
+          ls
 
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -41,3 +50,4 @@ jobs:
           files: |
             ./node_modules/pyright/pyright_${{ runner.os }}.exe
             ./node_modules/vim-language-server/viml_${{ runner.os }}.exe
+            ./node_modules/typescript-language-server/ts_${{ runner.os }}.exe
