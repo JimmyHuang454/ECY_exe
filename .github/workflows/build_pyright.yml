@@ -1,0 +1,37 @@
+name: pyright
+on: [push, pull_request]
+
+jobs:
+  setup_env:
+    name: pyright
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout theia
+        uses: actions/checkout@v2
+        with:
+          repository: microsoft/pyright
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+
+      - name: npm install
+        run: |
+          npm install -g nexe
+          npm install
+          cd ./packages/pyright/
+          npm install
+          npm run build
+          nexe -t x64-12.9.1 ./langserver.index.js -o pyright_${{ runner.os }}.exe
+          ./pyright_${{ runner.os }}.exe --help
+          ls
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            ./pyright_${{ runner.os }}.exe
