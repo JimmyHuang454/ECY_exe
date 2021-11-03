@@ -1,9 +1,9 @@
-name: pyright
+name: build nodejs
 on: [push, pull_request]
 
 jobs:
   setup_env:
-    name: pyright
+    name: pyright, viml
     strategy:
       matrix:
         os: [windows-latest, macos-latest, ubuntu-latest]
@@ -18,14 +18,21 @@ jobs:
         with:
           node-version: "14"
 
-      - name: npm install
+      - name: npm Pyright
         run: |
           npm install -g pkg
           npm install pyright -prefix ./
           cd ./node_modules/pyright
           npm install
-          ls
           pkg package.json -o ./pyright_${{ runner.os }}.exe
+          ls
+
+      - name: npm viml
+        run: |
+          npm install vim-language-server -prefix ./
+          cd ./node_modules/vim-language-server
+          npm install
+          pkg package.json -o ./viml_${{ runner.os }}.exe
 
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -33,3 +40,4 @@ jobs:
         with:
           files: |
             ./node_modules/pyright/pyright_${{ runner.os }}.exe
+            ./node_modules/vim-language-server/viml_${{ runner.os }}.exe
