@@ -3,7 +3,7 @@ on: [push, pull_request]
 
 jobs:
   setup_env:
-    name: pyright, viml, ts
+    name: pyright, viml, ts, html
     strategy:
       matrix:
         os: [windows-latest, macos-latest, ubuntu-latest]
@@ -52,7 +52,7 @@ jobs:
         run: |
           cd ./vsc/extensions/html-language-features/server/
           npm install
-          npm compile
+          npm run compile
           pkg ./out/node/htmlServerMain.js -o ./html_${{ runner.os }}.exe
           ls
 
