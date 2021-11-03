@@ -23,10 +23,8 @@ jobs:
           npm install -g nexe
           npm install
           cd ./packages/pyright/
-          npm install
           npm run build
           nexe -t x64-12.9.1 ./langserver.index.js -o pyright_${{ runner.os }}.exe
-          ./pyright_${{ runner.os }}.exe --help
           ls
 
       - name: Release
