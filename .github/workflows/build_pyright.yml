@@ -24,7 +24,7 @@ jobs:
           npm install
           cd ./packages/pyright/
           npm run build
-          nexe -t x64-12.9.1 ./langserver.index.js -o pyright_${{ runner.os }}.exe
+          nexe -t x64-12.9.1 ./langserver.index.js -o ./pyright_${{ runner.os }}.exe
           ls
 
       - name: Release
@@ -32,4 +32,4 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            ./pyright_${{ runner.os }}.exe
+            ./packages/pyright/pyright_${{ runner.os }}.exe
