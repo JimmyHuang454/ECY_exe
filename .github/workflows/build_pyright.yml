@@ -25,7 +25,7 @@ jobs:
           cd ./node_modules/pyright
           npm install
           ls
-          pkg packages.json -o ./pyright_${{ runner.os }}.exe
+          pkg package.json -o ./pyright_${{ runner.os }}.exe
 
       - name: Release
         uses: softprops/action-gh-release@v1
