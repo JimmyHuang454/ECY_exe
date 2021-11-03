@@ -43,12 +43,17 @@ jobs:
           pkg package.json -o ./ts_${{ runner.os }}.exe
           ls
 
+      - name: Checkout vscode
+        uses: actions/checkout@v2
+        with:
+          repository: microsoft/vscode
+          path: vsc
       - name: npm html
         run: |
-          npm install @nevmn/vscode-html-languageserver -prefix ./
-          cd ./node_modules/@nevmn/vscode-html-languageserver
+          cd ./vsc/extensions/html-language-features/server/
           npm install
-          pkg package.json -o ./html_${{ runner.os }}.exe
+          node ./build/javaScriptLibraryLoader.js
+          pkg ./out/node/htmlServerMain.js -o ./html_${{ runner.os }}.exe
           ls
 
       - name: Release
@@ -59,4 +64,4 @@ jobs:
             ./node_modules/pyright/pyright_${{ runner.os }}.exe
             ./node_modules/vim-language-server/viml_${{ runner.os }}.exe
             ./node_modules/typescript-language-server/ts_${{ runner.os }}.exe
-            ./node_modules/@nevmn/vscode-html-languageserver/html_${{ runner.os }}.exe
+            ./vsc/extensions/html-language-features/server/html_${{ runner.os }}.exe
