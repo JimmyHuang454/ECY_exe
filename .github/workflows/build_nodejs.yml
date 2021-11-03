@@ -48,10 +48,9 @@ jobs:
         with:
           repository: neoclide/coc-html
           path: html
-      - name: npm html
+      - name: build html
         run: |
           npm install -g yarn
-          npm install vscode-html-languageserver-bin -prefix ./
           cd ./html/
           yarn install
           yarn run build
@@ -66,4 +65,4 @@ jobs:
             ./node_modules/pyright/pyright_${{ runner.os }}.exe
             ./node_modules/vim-language-server/viml_${{ runner.os }}.exe
             ./node_modules/typescript-language-server/ts_${{ runner.os }}.exe
-            ./node_modules/vscode-html-languageserver-bin/html_${{ runner.os }}.exe
+            ./html/html_${{ runner.os }}.exe
