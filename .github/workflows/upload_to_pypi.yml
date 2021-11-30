@@ -1,4 +1,4 @@
-name: rust
+name: upload_to_pypi
 on: [push, pull_request]
 
 jobs:
