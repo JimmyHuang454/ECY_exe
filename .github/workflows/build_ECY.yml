@@ -34,7 +34,7 @@ jobs:
           pip3 install pyinstaller
           pip3 install pygments
 
-      - name: Build
+      - name: Build exe
         run: |
           pyinstaller -F -n ECY_${{ runner.os }}.exe ./cli.py
           ls
@@ -45,3 +45,14 @@ jobs:
         with:
           files: |
             ./dist/ECY_${{ runner.os }}.exe
+
+      - name: Build pypi
+        run: |
+          python up.py
+
+      - name: Publish package to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}
+          packages_dir: pypi/ECY_${{ runner.os }}_main_dir/ECY_${{ runner.os }}_main/dist
