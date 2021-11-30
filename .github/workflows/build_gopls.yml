@@ -33,4 +33,4 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            ./gopls/gopls_${{ runner.os }}.exe
+            ./gopls/ECY_gopls_${{ runner.os }}.exe

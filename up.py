@@ -80,15 +80,26 @@ def NewArchieve(platform: str, exe: str) -> str:
 
 
 def MoveFile(file_path, new_file_path):
-    shutil.move(src, dst)
+    shutil.move(file_path, new_file_path)
 
-
-arch = NewArchieve('Linux', 'main')
 
 DoCMD('python -m pip install --upgrade build')
 DoCMD('python -m pip install --upgrade twine')
 
-DoCMD('python -m build', cwd=arch)
-DoCMD('python -m twine upload --repository pypi dist/* --config-file "%s"' %
-      (arch + '/.pypirc'),
-      cwd=arch)
+for dirs, _, files in os.walk(BASE_DIR + '/exes'):
+    for item in files:
+        temp = item.split('_')
+        server_name = temp[1]
+        print(server_name)
+        platform = temp[2].split('.')[0]
+        print(server_name)
+
+        arch = NewArchieve(platform, server_name)
+        MoveFile(dirs + '/' + item, arch + '/ECY_exe')
+
+        quit()
+        DoCMD('python -m build', cwd=arch)
+        DoCMD(
+            'python -m twine upload --repository pypi dist/* --config-file "%s"'
+            % (arch + '/.pypirc'),
+            cwd=arch)
