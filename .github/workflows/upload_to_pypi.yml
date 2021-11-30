@@ -24,7 +24,7 @@ jobs:
 
       - name: Build pypi
         env:
-          SCKEY: ${{ secrets.PYPI }}
+          PYPI: ${{ secrets.PYPI }}
         run: |
           python up.py
 
