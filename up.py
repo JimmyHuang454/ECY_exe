@@ -90,14 +90,15 @@ for dirs, _, files in os.walk(BASE_DIR + '/exes'):
     for item in files:
         temp = item.split('_')
         server_name = temp[1]
-        print(server_name)
         platform = temp[2].split('.')[0]
+
+        print(server_name)
         print(server_name)
 
         arch = NewArchieve(platform, server_name)
         MoveFile(dirs + '/' + item, arch + '/ECY_exe')
 
-        quit()
+        continue
         DoCMD('python -m build', cwd=arch)
         DoCMD(
             'python -m twine upload --repository pypi dist/* --config-file "%s"'
