@@ -2,6 +2,7 @@ import os
 import sys
 import subprocess
 import shutil
+import time
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 BASE_DIR = BASE_DIR.replace('\\', '/')
@@ -12,6 +13,13 @@ def DoCMD(cmd, cwd=None):
         cwd = BASE_DIR
     print('\n\n==', cmd, '\n')
     subprocess.Popen(cmd, cwd=cwd, shell=True).wait()
+
+
+def Version():
+    return time.strftime("%Y.%m%d.%H%M%S", time.localtime())
+
+
+VERSION = Version()
 
 
 def NewDir(dir_name):
@@ -48,7 +56,7 @@ def NewArchieve(platform: str, exe: str) -> str:
     ###########
     with open(BASE_DIR + '/pypi/setup_template.py', 'r') as f:
         content = f.read()
-        content = content.format(platform=platform, exe=exe)
+        content = content.format(platform=platform, exe=exe, version=VERSION)
         f.close()
 
     with open(arch + '/setup.py', 'w') as f:

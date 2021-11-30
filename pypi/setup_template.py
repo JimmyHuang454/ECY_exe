@@ -13,16 +13,12 @@ def GetCurrentOS():
     return 'Linux'
 
 
-def Version():
-    return time.strftime("%Y.%m%d.%H%M%S", time.localtime())
-
-
 NAME = "ECY_{platform}_{exe}"
 
 LONG_DESCRIPTION = "Clone from https://github.com/JimmyHuang454/ECY_exe"
 
 setup(name=NAME,
-      version=Version(),
+      version="{version}",
       include_package_data=True,
       zip_safe=False,
       maintainer="jimmy huang",
