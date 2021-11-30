@@ -26,8 +26,8 @@ jobs:
         run: |
           python up.py
 
-      - name: Publish distribution to PyPI
-        uses: pypa/gh-action-pypi-publish@master
-        with:
-          password: ${{ secrets.PYPI }}
-          packages_dir: pypi/ECY_${{ runner.os }}_main_dir/ECY_${{ runner.os }}_main/dist
+      # - name: Publish distribution to PyPI
+      #   uses: pypa/gh-action-pypi-publish@master
+      #   with:
+      #     password: ${{ secrets.PYPI }}
+      #     packages_dir: pypi/ECY_${{ runner.os }}_main_dir/ECY_${{ runner.os }}_main/dist

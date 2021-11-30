@@ -51,6 +51,15 @@ def NewArchieve(platform: str, exe: str) -> str:
         f.write(content)
         f.close()
 
+    with open(BASE_DIR + '/pypirc', 'r') as f:
+        content = f.read()
+        content = content.format(token=os.environ.get('PYPI'))
+        f.close()
+
+    with open(arch + '/.pypirc', 'w') as f:
+        f.write(content)
+        f.close()
+
     ###########
     #  setup  #
     ###########
@@ -66,7 +75,16 @@ def NewArchieve(platform: str, exe: str) -> str:
     return arch
 
 
+def MoveFile(file_path, new_file_path):
+    shutil.move(src, dst)
+
+
 arch = NewArchieve('Linux', 'main')
 
 DoCMD('python -m pip install --upgrade build')
+DoCMD('python -m pip install --upgrade twine')
+
 DoCMD('python -m build', cwd=arch)
+DoCMD('python -m twine upload --repository pypi dist/* --config-file "%s"' %
+      ('./.pypirc'),
+      cwd=arch)
