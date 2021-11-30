@@ -99,7 +99,6 @@ for dirs, _, files in os.walk(BASE_DIR + '/exes'):
         arch = NewArchieve(platform, server_name)
         MoveFile(dirs + '/' + item, arch + '/ECY_exe')
 
-        continue
         DoCMD('python -m build', cwd=arch)
         DoCMD(
             'python -m twine upload --repository pypi dist/* --config-file "%s"'
