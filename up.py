@@ -51,9 +51,13 @@ def NewArchieve(platform: str, exe: str) -> str:
         f.write(content)
         f.close()
 
+    ###########
+    #  token  #
+    ###########
     with open(BASE_DIR + '/pypirc', 'r') as f:
         content = f.read()
         content = content.format(token=os.environ.get('PYPI'))
+        print(content)
         f.close()
 
     with open(arch + '/.pypirc', 'w') as f:
