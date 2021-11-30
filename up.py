@@ -58,9 +58,7 @@ def NewArchieve(platform: str, exe: str) -> str:
     return arch
 
 
-arch = NewArchieve('Windows', 'main')
 arch = NewArchieve('Linux', 'main')
-arch = NewArchieve('macOS', 'main')
 
 DoCMD('python -m pip install --upgrade build')
 DoCMD('python -m build', cwd=arch)
