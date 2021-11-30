@@ -89,6 +89,7 @@ DoCMD('python -m pip install --upgrade twine')
 for dirs, _, files in os.walk(BASE_DIR + '/exes'):
     for item in files:
         temp = item.split('_')
+        print(temp)
         server_name = temp[1]
         platform = temp[2].split('.')[0]
 
