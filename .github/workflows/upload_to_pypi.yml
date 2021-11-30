@@ -23,6 +23,8 @@ jobs:
           fileName: "*"
 
       - name: Build pypi
+        env:
+          SCKEY: ${{ secrets.PYPI }}
         run: |
           python up.py
 
