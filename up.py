@@ -60,7 +60,5 @@ def NewArchieve(platform: str, exe: str) -> str:
 
 arch = NewArchieve('Linux', 'main')
 
-print('token;', os.environ.get('PYPI_API_TOKEN'))
-
 DoCMD('python -m pip install --upgrade build')
 DoCMD('python -m build', cwd=arch)
