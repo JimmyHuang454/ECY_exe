@@ -1,0 +1,34 @@
+name: rust
+on: [push, pull_request]
+
+jobs:
+  setup_env:
+    name: rust
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    if: "contains(github.event.head_commit.message, 'pypi')"
+    steps:
+      - name: Checkout myself
+        uses: actions/checkout@v2
+        with:
+          repository: JimmyHuang454/ECY_exe
+
+      - uses: robinraju/release-downloader@v1.2
+        with:
+          repository: "JimmyHuang454/ECY_exe"
+          latest: true
+          out-file-path: "exes"
+          fileName: "*"
+
+      - name: Build pypi
+        run: |
+          python up.py
+
+      - name: Publish package to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}
+          packages_dir: pypi/ECY_${{ runner.os }}_main_dir/ECY_${{ runner.os }}_main/dist

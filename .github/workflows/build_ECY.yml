@@ -45,15 +45,3 @@ jobs:
         with:
           files: |
             ./dist/ECY_${{ runner.os }}.exe
-
-      - name: Build pypi
-        run: |
-          python up.py
-
-      - name: Publish package to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        if: startsWith(runner.os, 'Linux')
-        with:
-          user: __token__
-          password: ${{ secrets.PYPI_API_TOKEN }}
-          packages_dir: pypi/ECY_${{ runner.os }}_main_dir/ECY_${{ runner.os }}_main/dist
