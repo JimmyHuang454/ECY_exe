@@ -86,5 +86,5 @@ DoCMD('python -m pip install --upgrade twine')
 
 DoCMD('python -m build', cwd=arch)
 DoCMD('python -m twine upload --repository pypi dist/* --config-file "%s"' %
-      ('./.pypirc'),
+      (arch + '/.pypirc'),
       cwd=arch)
