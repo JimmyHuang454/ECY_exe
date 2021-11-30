@@ -3,7 +3,7 @@ on: [push, pull_request]
 
 jobs:
   setup_env:
-    name: rust
+    name: upload_to_pypi
     strategy:
       matrix:
         os: [ubuntu-latest]
