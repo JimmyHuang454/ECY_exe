@@ -36,7 +36,7 @@ jobs:
 
       - name: Build exe
         run: |
-          pyinstaller -F -n ECY_${{ runner.os }}.exe ./cli.py
+          pyinstaller -F -n ECY_main_${{ runner.os }}.exe ./cli.py
           ls
 
       - name: Release
