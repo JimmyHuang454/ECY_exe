@@ -33,6 +33,8 @@ jobs:
           python3 --version
           pip3 install pyinstaller
           pip3 install pygments
+          pip3 install tqdm
+          pip3 install requests
 
       - name: Build exe
         run: |

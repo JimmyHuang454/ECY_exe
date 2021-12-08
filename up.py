@@ -11,7 +11,7 @@ BASE_DIR = BASE_DIR.replace('\\', '/')
 def DoCMD(cmd, cwd=None):
     if cwd is None:
         cwd = BASE_DIR
-    print('\n\n==', cmd, '\n')
+    print('\n\n==', cmd, '\n', flush=True)
     subprocess.Popen(cmd, cwd=cwd, shell=True).wait()
 
 
@@ -57,7 +57,6 @@ def NewArchieve(platform: str, exe: str) -> str:
     with open(BASE_DIR + '/pypirc', 'r') as f:
         content = f.read()
         content = content.format(token=os.environ.get('PYPI'))
-        print(content)
         f.close()
 
     with open(arch + '/.pypirc', 'w') as f:
