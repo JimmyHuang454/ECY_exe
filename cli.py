@@ -15,10 +15,8 @@ import base64
 import shutil
 import tarfile
 
-from urllib.parse import urljoin
-from urllib.request import pathname2url, urlretrieve
-from urllib.parse import urlparse
-from urllib import url2pathname, request
+from urllib.parse import urljoin, urlparse
+from urllib.request import pathname2url, urlretrieve, url2pathname
 from xmlrpc.server import SimpleXMLRPCServer
 import xmlrpc.client
 
