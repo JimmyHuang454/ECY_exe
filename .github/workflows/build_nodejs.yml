@@ -25,6 +25,7 @@ jobs:
           cd ./node_modules/pyright
           npm install
           pkg package.json -o ./ECY_pyright_${{ runner.os }}.exe
+          pkg .
           ls
 
       - name: npm viml
