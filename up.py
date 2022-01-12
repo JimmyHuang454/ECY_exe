@@ -103,6 +103,7 @@ for dirs, _, files in os.walk(BASE_DIR + '/clangd'):
         if temp[1] == 'mac':
             output_path += 'ECY_clangd_macOS.zip'
         os.rename(handling_files, output_path)
+        print(output_path)
 
 #######################################################################
 #                             upload all                              #
