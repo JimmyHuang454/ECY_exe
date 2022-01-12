@@ -41,13 +41,13 @@ jobs:
           pkg package.json -o ./ECY_viml_${{ runner.os }}.exe
           ls
 
-      - name: npm ts
-        run: |
-          npm install typescript-language-server -prefix ./
-          cd ./node_modules/typescript-language-server
-          npm install
-          pkg package.json -o ./ECY_ts_${{ runner.os }}.exe
-          ls
+      # - name: npm ts
+      #   run: |
+      #     npm install typescript-language-server -prefix ./
+      #     cd ./node_modules/typescript-language-server
+      #     npm install
+      #     pkg package.json -o ./ECY_ts_${{ runner.os }}.exe
+      #     ls
 
       - name: npm vls
         run: |
