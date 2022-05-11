@@ -121,6 +121,29 @@ handling_files = BASE_DIR + '/rust_analyzer/rust-analyzer-x86_64-unknown-linux-g
 output_path = BASE_DIR + '/exes/ECY_RustAnalyzer_Linux.exe.gz'
 os.rename(handling_files, output_path)
 
+#########
+#  lua  #
+#########
+for dirs, _, files in os.walk(BASE_DIR + '/lua'):
+    for item in files:
+        if item.find('lua') == -1:
+            continue
+        handling_files = dirs + '/' + item
+        output_path = BASE_DIR + '/exes/'
+        if item.find('linux') != -1 and item.find('x64') != -1:
+            output_path += 'ECY_lua_Linux'
+        if item.find('win') != -1 and item.find('x64') != -1:
+            output_path += 'ECY_lua_Windows'
+        if item.find('darwin') != -1 and item.find('x64') != -1:
+            output_path += 'ECY_lua_macOS'
+
+        if item.endswith('gz'):
+            output_path += '.tar.gz'
+        if item.endswith('zip'):
+            output_path += '.zip'
+        os.rename(handling_files, output_path)
+        print(output_path)
+
 
 def UnGz(file_name: str) -> str:
     f_name = file_name.replace(".gz", "")
