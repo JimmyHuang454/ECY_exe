@@ -92,16 +92,15 @@ DoCMD('python -m pip install --upgrade twine')
 ############
 for dirs, _, files in os.walk(BASE_DIR + '/clangd'):
     for item in files:
-        temp = item.split('-')
-        if temp[0] != 'clangd':
+        if item.find('clangd') == -1 or item.find('indexing') != -1:
             continue
         handling_files = dirs + '/' + item
         output_path = BASE_DIR + '/exes/'
-        if temp[1] == 'linux':
+        if item.find('linux') != -1:
             output_path += 'ECY_clangd_Linux.zip'
-        if temp[1] == 'windows':
+        if item.find('windows') != -1:
             output_path += 'ECY_clangd_Windows.zip'
-        if temp[1] == 'mac':
+        if item.find('mac') != -1:
             output_path += 'ECY_clangd_macOS.zip'
         os.rename(handling_files, output_path)
         print(output_path)
