@@ -98,10 +98,12 @@ for dirs, _, files in os.walk(BASE_DIR + '/clangd'):
         output_path = BASE_DIR + '/exes/'
         if item.find('linux') != -1:
             output_path += 'ECY_clangd_Linux.zip'
-        if item.find('windows') != -1:
+        elif item.find('windows') != -1:
             output_path += 'ECY_clangd_Windows.zip'
-        if item.find('mac') != -1:
+        elif item.find('mac') != -1:
             output_path += 'ECY_clangd_macOS.zip'
+        else:
+            continue
         os.rename(handling_files, output_path)
         print(output_path)
 
@@ -131,10 +133,12 @@ for dirs, _, files in os.walk(BASE_DIR + '/lua'):
         output_path = BASE_DIR + '/exes/'
         if item.find('linux') != -1 and item.find('x64') != -1:
             output_path += 'ECY_lua_Linux'
-        if item.find('win') != -1 and item.find('x64') != -1:
+        elif item.find('win') != -1 and item.find('x64') != -1:
             output_path += 'ECY_lua_Windows'
-        if item.find('darwin') != -1 and item.find('x64') != -1:
+        elif item.find('darwin') != -1 and item.find('x64') != -1:
             output_path += 'ECY_lua_macOS'
+        else:
+            continue
 
         if item.endswith('gz'):
             output_path += '.tar.gz'
