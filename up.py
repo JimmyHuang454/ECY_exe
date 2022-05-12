@@ -5,6 +5,7 @@ import shutil
 import time
 import zipfile
 import gzip
+import tarfile
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 BASE_DIR = BASE_DIR.replace('\\', '/')
@@ -140,12 +141,18 @@ for dirs, _, files in os.walk(BASE_DIR + '/lua'):
         else:
             continue
 
-        if item.endswith('gz'):
+        if item.endswith('.tar.gz'):
             output_path += '.tar.gz'
-        if item.endswith('zip'):
+        if item.endswith('.zip'):
             output_path += '.zip'
         os.rename(handling_files, output_path)
         print(output_path)
+
+
+def UnTarGz(file_path: str) -> str:
+    temp = tarfile.open(file_path)
+    temp.extractall(os.path.dirname(file_path))
+    temp.close()
 
 
 def UnGz(file_name: str) -> str:
@@ -175,6 +182,8 @@ for dirs, _, files in os.walk(BASE_DIR + '/exes'):
         output_dir = arch + '/ECY_exe'
         if zipfile.is_zipfile(handling_files):
             zipfile.ZipFile(handling_files).extractall(output_dir)
+        elif handling_files.endswith('.tar.gz'):
+            MoveFile(UnTarGz(handling_files), output_dir)
         elif handling_files.endswith('.gz'):
             MoveFile(UnGz(handling_files), output_dir)
         else:
