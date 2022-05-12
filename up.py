@@ -149,9 +149,9 @@ for dirs, _, files in os.walk(BASE_DIR + '/lua'):
         print(output_path)
 
 
-def UnTarGz(file_path: str) -> str:
+def UnTarGz(file_path: str, output_dir: str) -> str:
     temp = tarfile.open(file_path)
-    temp.extractall(os.path.dirname(file_path))
+    temp.extractall(output_dir)
     temp.close()
 
 
@@ -183,7 +183,7 @@ for dirs, _, files in os.walk(BASE_DIR + '/exes'):
         if zipfile.is_zipfile(handling_files):
             zipfile.ZipFile(handling_files).extractall(output_dir)
         elif handling_files.endswith('.tar.gz'):
-            MoveFile(UnTarGz(handling_files), output_dir)
+            UnTarGz(handling_files, output_dir)
         elif handling_files.endswith('.gz'):
             MoveFile(UnGz(handling_files), output_dir)
         else:
