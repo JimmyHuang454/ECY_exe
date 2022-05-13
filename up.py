@@ -134,7 +134,7 @@ for dirs, _, files in os.walk(BASE_DIR + '/lua'):
         output_path = BASE_DIR + '/exes/'
         if item.find('linux') != -1 and item.find('x64') != -1:
             output_path += 'ECY_lua_Linux'
-        elif item.find('win') != -1 and item.find('x64') != -1:
+        elif item.find('win32') != -1 and item.find('x64') != -1:
             output_path += 'ECY_lua_Windows'
         elif item.find('darwin') != -1 and item.find('x64') != -1:
             output_path += 'ECY_lua_macOS'
@@ -172,9 +172,6 @@ for dirs, _, files in os.walk(BASE_DIR + '/exes'):
         print(temp)
         server_name = temp[1]
         platform = temp[2].split('.')[0]
-
-        print(server_name)
-        print(server_name)
 
         arch = NewArchieve(platform, server_name)
 
